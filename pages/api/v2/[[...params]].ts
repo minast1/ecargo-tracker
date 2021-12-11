@@ -1,6 +1,6 @@
 import { Tracker } from '.prisma/client';
-import {  Get,  Put,createHandler,  Post, HttpCode, Delete, Body, Param, ParseNumberPipe, ValidationPipe } from '@storyofams/next-api-decorators';
-import { addTrackerInput } from '../../../dto/addTrackerDto';
+import {  Get,  Put,createHandler,  Post, HttpCode, Delete, Body, Param, ParseNumberPipe } from '@storyofams/next-api-decorators';
+//import { addTrackerInput } from '../../../dto/addTrackerDto';
 import prisma from '../../../src/Prisma';
 
 //date
@@ -54,7 +54,7 @@ class TrackingHandler {
   //POsT /api/v2  requsest sent from the frontend client 
   @Post()
   @HttpCode(201)
-  async findOrCreateTracker(@Body(ValidationPipe) body: addTrackerInput): Promise<Tracker>{
+  async findOrCreateTracker(@Body() body:Tracker): Promise<Tracker>{
     const tracker = await prisma.tracker.findFirst({
       where: {
         tracking_number: {
