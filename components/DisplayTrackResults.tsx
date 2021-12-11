@@ -5,9 +5,8 @@ import Typography  from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import  Grid  from '@mui/material/Grid';
-import CustomizedStepper from './Stepper';
 import { trackingQueryResultStore } from '../src/dataStore';
-import { Status } from '.prisma/client';
+//import { Status } from '.prisma/client';
 
 
 const DisplayTrackResults = () => {

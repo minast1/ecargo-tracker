@@ -1,6 +1,5 @@
 import * as React from 'react';
 import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import { loginSchema } from '../src/constants';
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
@@ -77,7 +76,7 @@ export default function LoginDialog() {
       useClientSideStore.setState({toggleLoginDialog: false})
       };
     
-    const { control, handleSubmit, reset, setValue, register, formState: { errors } } = useForm<IFormInput>({
+    const { control, handleSubmit, register, formState: { errors } } = useForm<IFormInput>({
     resolver: yupResolver(loginSchema)
     });
     
