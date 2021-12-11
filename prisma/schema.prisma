@@ -1,0 +1,65 @@
+datasource db {
+  provider             = "mysql"
+  url                  = env("DATABASE_URL")
+  shadowDatabaseUrl    = env("SHADOW_DATABASE_URL")
+  referentialIntegrity = "prisma"
+
+}
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["referentialIntegrity"]
+}
+
+model Order {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  phone     String?  @db.VarChar(50)
+  awb       String?  @unique
+  jrn       String?  @unique
+  status    Status   @default(INFO_RECIEVED)
+  createdAt DateTime @default(now())
+}
+
+model Tracker {
+  id              Int      @id @default(autoincrement())
+  date            DateTime @default(now())
+  tracking_number String   @db.VarChar(255)
+  courier         String   @db.VarChar(255)
+  //phone      String   @db.VarChar(255)
+  createdAt       DateTime @default(now())
+  status          Status   @default(INFO_RECIEVED)
+  message         String   @default("Tracking Information Recieved Successfully")
+}
+
+enum Status {
+  INFO_RECIEVED
+  PENDING
+  IN_TRANSIT
+  DELIVERED
+  SHIPPED
+  RETURNED
+  PICK_UP
+  FAIL_ATTEMPT
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  userId       String
+  expires      DateTime
+  sessionToken String   @unique
+  accessToken  String   @unique
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @default(now())
+  user         User     @relation(fields: [userId], references: [id])
+
+}
+
+model User {
+  id        String    @id @default(cuid())
+  email     String?   @unique
+  password  String    @unique
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
+  sessions  Session[]
+}
