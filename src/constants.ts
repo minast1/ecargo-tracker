@@ -82,6 +82,17 @@ export async function fetcher<JSON = any> (
   
   return res.json();
 }*/
+export const status = [
+  { value: 'INFO_RECIEVED', label: 'Info Recieved' },
+  { value: 'PENDING', label: 'Pending' },
+  { value: 'IN_TRANSIT', label: 'In Transit' },
+  { value: 'DELIVERED', label: 'Delivered' },
+  { value: 'RETURNED', label: 'Returned' },
+  { value: 'SHIPPED', label: 'Shipped' },
+  { value: 'PICK_UP', label: 'Ready' },
+   {value: 'FAIL_ATTEMPT', label: 'Failed Attempt'}
+       
+]
 
 
 export interface ArticleType {
