@@ -10,7 +10,7 @@ import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 //import FormHelperText from '@mui/material/FormHelperText';
 import { courierList } from '../src/constants';
-import { cleintTrackerStore } from '../src/dataStore';
+//import { cleintTrackerStore } from '../src/dataStore';
 import { useRouter } from 'next/router'
 
 
@@ -51,7 +51,7 @@ const UniversalTrack = () => {
                     autoComplete="off"
                     onSubmit={(event: React.FormEvent<HTMLFormElement>) => {
                         event.preventDefault();
-                        cleintTrackerStore.setState({ trackerData: { courier: courier, tracking_number: trackin } });
+                       // cleintTrackerStore.setState({ trackerData: { courier: courier, tracking_number: trackin } });
                         router.push("/shipping-services/track-shipments");
                     }}
                                     >
