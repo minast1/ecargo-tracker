@@ -40,7 +40,6 @@ const DisplayTrackResults = () => {
               </Container>
         
             <Box sx={{mt: 4, mx:1, mb: 2}}>
-                <CustomizedStepper status={data?.status as Status} message={data?.message as string }/>
              </Box>
 
             <Divider sx={{mb:2}}/>  
