@@ -96,7 +96,7 @@ export interface resType {
   articles: ArticleType[]
 }
 
-export const convertDate = (dateString: Date): string => {
+export const convertDate = (dateString: Date | string): string => {
  let timestamp = new Date(dateString).getTime();
 let Day = new Date(timestamp).getDate();
 let Month = new Date(timestamp).getMonth() + 1;
