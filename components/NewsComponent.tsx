@@ -26,7 +26,7 @@ const NewsComponent = () => {
             <Divider />
                 <List sx={{ width: '100%' }}>
                       {
-                            data?.articles.filter((item, i) => i <= 3).map((newsItem, i) => 
+                            data?.articles.filter((_item, i) => i <= 3).map((newsItem, i) => 
                             
                                    <ListItem alignItems="flex-start" key={i}>
                                 <ListItemAvatar>
