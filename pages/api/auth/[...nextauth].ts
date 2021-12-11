@@ -43,7 +43,7 @@ export default NextAuth ({
         email: { type: 'text'},
         password: {  type: 'password'} 
      },
-        async authorize(credentials, _req) {
+        async authorize(credentials, req) {
             //console.log(credentials)
             // const {id ,  password} = credentials
             //const userEmail =  credentials.userId ??  userId;
@@ -52,17 +52,20 @@ export default NextAuth ({
             const user = await getUserByEmail(credentials?.email)
            
   
-            if (user) {
+          if (user) {
+
+               if(typeof credentials != "undefined"){
+            const crosscheckPassword = bcrypt.compareSync(credentials.password, user.password);
+            if (crosscheckPassword) {
+              userAccount = user;
+
+              return user
+            } else {
+              throw new Error("Invalid Password");
+              return;
            
-                const crosscheckPassword = await bcrypt.compareSync(credentials.password, user.password);
-              if (crosscheckPassword) {
-                userAccount = user;
-                    return Promise.resolve(user)
-                } else {
-                    throw new Error("Invalid Password");
-                    return;
-           
-                }
+            }
+          }
             
             } else {
                 throw new Error("Invalid Credentials!");
