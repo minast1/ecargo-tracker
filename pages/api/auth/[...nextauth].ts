@@ -3,27 +3,20 @@ import prisma from  '../../../src/Prisma'
 import bcrypt from 'bcrypt'
 import { PrismaAdapter } from "@next-auth/prisma-adapter"
 import CredentialsProvider from 'next-auth/providers/credentials'
+//import { User } from '@prisma/client'
 //import Credentials from '../../auth/credentials-signin';
-let userAccount:User | null  = null;
+//import { User } from '.prisma/client';
 
- type User ={
-        id: string
-      email: string | null
-      password : string
-}
+
+ 
 
 
    
  const getUserByEmail  =  async (email: string | undefined) => {
-     const user: User | null  =  await prisma.user.findUnique({
+     const user  =  await prisma.user.findUnique({
         where : {
               email:  email
        },
-        select : {
-              id : true ,
-              email: true,
-              password : true
-            }
       })
      return user 
 }
@@ -43,7 +36,7 @@ export default NextAuth ({
         email: { type: 'text'},
         password: {  type: 'password'} 
      },
-        async authorize(credentials, req) {
+        async authorize(credentials) {
             //console.log(credentials)
             // const {id ,  password} = credentials
             //const userEmail =  credentials.userId ??  userId;
@@ -55,21 +48,20 @@ export default NextAuth ({
           if (user) {
 
                if(typeof credentials != "undefined"){
-            const crosscheckPassword = bcrypt.compareSync(credentials.password, user.password);
+            const crosscheckPassword = await bcrypt.compareSync(credentials.password, user.password);
             if (crosscheckPassword) {
-              userAccount = user;
-
+        
               return user
             } else {
               throw new Error("Invalid Password");
-              return;
+              //return;
            
             }
           }
             
             } else {
                 throw new Error("Invalid Credentials!");
-                return;
+                //return;
 
             }
          
@@ -111,9 +103,9 @@ export default NextAuth ({
     
     session: async ({ session, token }) => {
         
-      if(userAccount !== null ) {
-        session.user = userAccount;
-      }
+      if (token) {
+         session.email = token.email
+       }
       //session = user ;
       //session.customSessionProperty = 'bar'
       return  session ///Promise.resolve(session)
