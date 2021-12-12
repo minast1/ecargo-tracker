@@ -17,7 +17,7 @@ type ClientSideOrderState = {
     toggleRegisterDialog: boolean
 }
 
-export const useClientSideStore = create<ClientSideOrderState>((_set, _get) => ({
+export const useClientSideStore = create<ClientSideOrderState>((set, get) => ({
     order: {},
     error: null,
     toggleLoginDialog: false,
@@ -39,7 +39,7 @@ export const useStore = create<OrderState>((set, get) => ({
     },
     deleteItem: (id) => {
         const data = get().orders;
-        const updatedData = data.filter(item => item.id !== id);
+        const updatedData = data.filter((item:Order) => item.id !== id);
         set({orders: updatedData})
     }
     
