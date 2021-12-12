@@ -37,7 +37,7 @@ export const courierList = [
 
 export const text_truncate = function (str:string, length?:number | null):string {
   if (length == null) {
-      length = 42
+      length = 47
   }
 
   if (str.length > length) {
@@ -97,9 +97,9 @@ export const status = [
 
 export interface ArticleType {
   title: string
-  url: string
-  urlToImage: string
-  publishedAt: string
+  source_url: string
+  image_url: string
+  created_at: number
 }
 export interface resType {
   status: string
@@ -107,7 +107,7 @@ export interface resType {
   articles: ArticleType[]
 }
 
-export const convertDate = (dateString: Date | string): string => {
+export const convertDate = (dateString: Date | string | number): string => {
  let timestamp = new Date(dateString).getTime();
 let Day = new Date(timestamp).getDate();
 let Month = new Date(timestamp).getMonth() + 1;
