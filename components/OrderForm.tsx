@@ -146,8 +146,8 @@ const { control, handleSubmit, reset, setValue, register, formState: { errors } 
                                       readOnly: true,
                                   }}
                                   id="outlined-required"
-                                  defaultValue={value}
-                                  //value={value}
+                                  //defaultValue={'xxxxxxxx'}
+                                  value={value}
                                   error={!!errors.track_number}
                                   placeholder='Generate code'
                                   helperText={errors.track_number?.message}
