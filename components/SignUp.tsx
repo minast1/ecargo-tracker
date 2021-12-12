@@ -71,7 +71,7 @@ export default function SignUp() {
     signIn('credentials', {
       email: data.email,
       password: data.password,
-      callbackUrl: `${process.env.NEXT_PUBLIC_URL}/admin-area/home`
+      callbackUrl: '/admin-area/home'
     });
     reset();
      authStore.setState({loading: false });
