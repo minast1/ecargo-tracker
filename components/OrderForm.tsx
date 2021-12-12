@@ -137,7 +137,7 @@ const { control, handleSubmit, reset, setValue, register, formState: { errors } 
                           name="track_number"
                           
                           control={control}
-                          render={() =>
+                          render={({field: {value}}) =>
               
                               <TextField
                                 {...register("track_number")}
@@ -146,8 +146,10 @@ const { control, handleSubmit, reset, setValue, register, formState: { errors } 
                                       readOnly: true,
                                   }}
                                   id="outlined-required"
-                                  defaultValue={'Generate code'}
+                                  defaultValue={value}
+                                  //value={value}
                                   error={!!errors.track_number}
+                                  placeholder='Generate code'
                                   helperText={errors.track_number?.message}
                                    sx={{width:'50%'}}
                                   size="small"
