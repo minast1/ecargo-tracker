@@ -4,7 +4,7 @@ import * as yup from 'yup';
 
 export const sections = [
   { title: 'Home', url: '/' },
-  { title: 'services & support', url: '#' },
+  { title: 'services & support', url: '/contact-us' },
   { title: 'about', url: '#' },
   { title: 'news', url: '#' },
   { title: 'contact', url: '#' },

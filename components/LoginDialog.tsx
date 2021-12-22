@@ -57,7 +57,7 @@ const mdTheme = createTheme({
             styleOverrides: {
                         root: {
                 "&.Mui-error": {
-                borderColor: "red"
+                borderColor: "yellow"
                 }
             }
 
@@ -123,14 +123,17 @@ export default function LoginDialog() {
           <Controller
             name="email"
             control={control}
-            render={({ field: { value } }) =>
+            render={({ field: { value, onChange} }) =>
         <FormControl variant="standard">
        
          <BootstrapInput
             {...register("email")}
-            value={value} id="bootstrap-input"
+                        //value={value}
+                        id="bootstrap-input"
             error={!!errors.email}
-             sx={{ marginBottom: -2 }}    
+                        sx={{ marginBottom: -2 }}   
+                        onChange={onChange}    
+                   placeholder='Enter your email'     
                      //helperText={errors.email?.message}    
                     /> 
                      {
@@ -148,15 +151,18 @@ export default function LoginDialog() {
           <Controller
             name="password"
           control={control}                       
-            render={({ field: {value } }) => 
+            render={({ field: {value, onChange } }) => 
              
              <FormControl variant="standard">
                 
                     <BootstrapInput
-                        {...register("email")}
+                        {...register("password")}
                         sx={{ marginBottom: -2 }} 
-                        value={value}
+                       // value={value}
                         id="bootstrap-input" 
+                        placeholder='********'
+                        type="password"
+                        onChange={onChange}
                         error={!!errors.password}
                          //helperText={?.message}
                     /> 
