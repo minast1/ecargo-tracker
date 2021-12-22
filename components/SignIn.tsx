@@ -34,7 +34,7 @@ export default function SignIn() {
 
   const onSubmit: SubmitHandler<IFormInput> = (data) => {
      
-    data.callbackUrl =  '/home'
+    data.callbackUrl =  `${process.env.NEXTAUTH_URL}/admin-area/home`
    // data.redirect = false;
     authStore.setState({ loading: true });
     signIn('credentials' , data  );
