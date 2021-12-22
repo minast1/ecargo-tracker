@@ -46,7 +46,7 @@ function DashboardContent() {
             >
               Welcome
             </Typography>
-            <IconButton color="inherit" onClick={() => signOut({ callbackUrl: `${process.env.NEXT_PUBLIC_VERCEL_URL}/admin-area/`})}> 
+            <IconButton color="inherit" onClick={() => signOut({ callbackUrl: '/admin-area/'})}> 
                           <LogoutSharpIcon/>
             </IconButton>
           </Toolbar>
