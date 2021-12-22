@@ -34,7 +34,7 @@ export default function SignIn() {
 
   const onSubmit: SubmitHandler<IFormInput> = (data) => {
      
-    data.callbackUrl =  `/admin-area/home`
+    data.callbackUrl =  `${process.env.NEXT_PUBLIC_VERCEL_URL}/admin-area/home`
    // data.redirect = false;
     authStore.setState({ loading: true });
     signIn('credentials' , data  );
