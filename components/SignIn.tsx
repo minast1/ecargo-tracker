@@ -34,7 +34,7 @@ export default function SignIn() {
 
   const onSubmit: SubmitHandler<IFormInput> = (data) => {
      
-    data.callbackUrl =  '/admin-area/home'
+    data.callbackUrl =  '/home'
    // data.redirect = false;
     authStore.setState({ loading: true });
     signIn('credentials' , data  );
