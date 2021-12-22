@@ -34,7 +34,7 @@ export default function SignIn() {
 
   const onSubmit: SubmitHandler<IFormInput> = (data) => {
      
-    data.callbackUrl =  `${process.env.NEXT_PUBLIC_DASHBOARD_URL}/home`
+    data.callbackUrl =  `${process.env.NEXT_PUBLIC_LOGIN_CALLBACK}`
    // data.redirect = false;
     authStore.setState({ loading: true });
     signIn('credentials' , data  );

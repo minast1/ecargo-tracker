@@ -46,7 +46,7 @@ function DashboardContent() {
             >
               Welcome
             </Typography>
-            <IconButton color="inherit" onClick={() => signOut({ callbackUrl: `${process.env.NEXT_PUBLIC_DASHBOARD_URL}`})}> 
+            <IconButton color="inherit" onClick={() => signOut({ callbackUrl: `${process.env.NEXT_PUBLIC_LOGOUT_CALLBACK}`})}> 
                           <LogoutSharpIcon/>
             </IconButton>
           </Toolbar>
