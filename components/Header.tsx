@@ -9,7 +9,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import Stack from '@mui/material/Stack';
 import { useClientSideStore } from '../src/orderStore';
 import LoginDialog from './LoginDialog';
-
+import { useRouter } from 'next/router'
 
 
 interface HeaderProps {
@@ -22,6 +22,7 @@ interface HeaderProps {
 
 function Header(props: HeaderProps) {
     const { sections } = props; 
+    const router = useRouter();
     return (
         <React.Fragment>
             <Toolbar variant="dense" sx={{
@@ -49,7 +50,7 @@ function Header(props: HeaderProps) {
                     >Login</Button>
                     <LoginDialog/>
                     <Divider orientation="vertical" variant="middle" flexItem sx={{ backgroundColor: 'white'}}/>
-                    <Button variant="text" size="small" sx={{pl: 1,pt:1}}>Register</Button>
+                    <Button variant="text" size="small" onClick={() => router.push(`${process.env.NEXT_PUBLIC_URL}/admin-area`)} sx={{pl: 1,pt:1}}>Register</Button>
               </Box>
             </Toolbar>
              <Toolbar variant="dense" sx={{
