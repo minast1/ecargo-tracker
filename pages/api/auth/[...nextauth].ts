@@ -127,7 +127,7 @@ export default NextAuth ({
   // The routes shown here are the default URLs that will be used.
   // @link https://next-auth.js.org/configuration/pages
   pages: {
-    signIn: '/auth/credentials-signin',
+    signIn: `${process.env.NEXTAUTH_URL}/admin-area`,//'/auth/credentials-signin',
     //signOut: '/api/auth/signout',
     error: '/admin-area', // Error code passed in query string as ?error=
     //verifyRequest: '/api/auth/verify-request', // (used for check email message)
