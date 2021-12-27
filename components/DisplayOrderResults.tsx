@@ -25,7 +25,7 @@ const DisplayOrderResults = () => {
                     </Grid>
                     <Grid item xs={3}>
                      <Typography sx={{ fontSize: '16px',fontWeight: 'bold'}}>Shipping By:</Typography>
-                        <Typography sx={{ fontSize: '15px', color: 'lightslategray' }}>{data.email}</Typography>
+                        <Typography sx={{ fontSize: '15px', color: 'lightslategray' }}>{data.name}</Typography>
                     </Grid>
                     <Grid item xs={3}>
                        <Typography sx={{ fontSize: '16px', fontWeight: 'bold' }}>Estimated Delivery Time:</Typography>

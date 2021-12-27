@@ -12,6 +12,7 @@ import { StepIconProps } from '@mui/material/StepIcon';
 import { Status } from '.prisma/client';
 import QueryBuilderIcon from '@mui/icons-material/QueryBuilder';
 import NotificationImportantIcon from '@mui/icons-material/NotificationImportant';
+import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 
 const ColorlibConnector = styled(StepConnector)(({ theme }) => ({
   [`&.${stepConnectorClasses.alternativeLabel}`]: {
@@ -69,8 +70,9 @@ function ColorlibStepIcon(props: StepIconProps) {
     2: <QueryBuilderIcon />,
     3: <DirectionsBoatFilledIcon/>,
     4: <LocalShippingIcon />,
-    5: <NotificationImportantIcon/>,
-    6: <ShoppingBasketIcon/>
+    5: <NotificationImportantIcon />,
+    6: <LocationOnOutlinedIcon/>,
+    7: <ShoppingBasketIcon/>
   };
 
   return (
@@ -80,15 +82,23 @@ function ColorlibStepIcon(props: StepIconProps) {
   );
 }
 
-const steps = [ 'Info recieved','Pending', 'Shipped' ,'In_Transit', 'Ready_For_Pick_Up' ,'Delivered'];
+const steps = [
+  'Package recieved',
+  'Pending Shipment',
+  'Shipped',
+  'In_Transit',
+  'Arrived at Destination',
+  'Ready_For_Pick_Up',
+  'Delivered'];
 
  const progress = (status: Status) => {
-   if (status === 'INFO_RECIEVED') return 0;
+   if (status === 'PACKAGE_RECIEVED') return 0;
    if (status === 'PENDING') return 1
      if (status === 'SHIPPED') return 2
    if (status === 'IN_TRANSIT') return 3
-     if (status === 'PICK_UP') return 4
-   if(status === 'DELIVERED')  return 5
+   if (status === 'ARRIVED_AT_DESTINATION') return 4
+     if (status === 'PICK_UP') return 5
+   if (status === 'DELIVERED') return 6
   /// if(status === 'RETURNED' || status === 'FAIL_ATTEMPT') return 1
   }
 
