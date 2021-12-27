@@ -28,7 +28,7 @@ export const trackerStore = create<TrackerState>((set, get) => ({
     },
     deleteItem: (id) => {
         const data = get().trackerData;
-        const updatedData = data.filter(item => item.id !== id);
+        const updatedData = data.filter((item: Tracker) => item.id !== id);
         set({trackerData: updatedData})
     }
     
