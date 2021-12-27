@@ -60,7 +60,8 @@ class OrderHandler {
           data: {
               awb: body.awb ,
               //jrn: body.jrn != null ? body.awb: undefined ,
-              email: body.email,
+              name: body.name,
+              address: body.address,
               phone: body.phone != null ? body.phone : undefined,
               status: body.status
           }

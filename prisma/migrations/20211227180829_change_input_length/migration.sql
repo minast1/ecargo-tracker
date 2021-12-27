@@ -1,0 +1,4 @@
+-- AlterTable
+ALTER TABLE `Order` MODIFY `phone` VARCHAR(70) NULL,
+    MODIFY `address` VARCHAR(100) NOT NULL,
+    MODIFY `name` VARCHAR(100) NOT NULL;

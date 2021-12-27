@@ -62,9 +62,10 @@ export default function Row({ order }: { order: Order }) {
         <StyledTableCell component="th" scope="row">
           {order.createdAt}
         </StyledTableCell>
-        <StyledTableCell align="right">{order.awb}</StyledTableCell>
-        <StyledTableCell align="right">{order.email}</StyledTableCell>
-        <StyledTableCell align="right">{order.status}</StyledTableCell>
+        <StyledTableCell>{order.awb}</StyledTableCell>
+        <StyledTableCell >{order.name}</StyledTableCell>
+         <StyledTableCell>{order.phone}</StyledTableCell>
+        <StyledTableCell>{order.status}</StyledTableCell>
               <StyledTableCell align="right">
           <Button
             size="small"

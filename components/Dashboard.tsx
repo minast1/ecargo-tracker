@@ -90,7 +90,7 @@ function DashboardContent() {
                     p: 2,
                     display: 'flex',
                     flexDirection: 'column',
-                    height: 350,
+                    height: 449,
                   }}
                 >
                    <Typography color="primary">Airline Prefix Code Referrence Table</Typography>

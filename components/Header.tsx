@@ -9,6 +9,11 @@ import SearchIcon from '@mui/icons-material/Search';
 import Stack from '@mui/material/Stack';
 import { useClientSideStore } from '../src/orderStore';
 import LoginDialog from './LoginDialog';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import StyledMenu from './StyledMenu';
+import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutlined';
+
 
 
 
@@ -16,12 +21,27 @@ interface HeaderProps {
     sections: ReadonlyArray<{
         title: string;
         url: string;
+        options: string[]
     }>
 
 }
 
 function Header(props: HeaderProps) {
     const { sections } = props; 
+    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+
+    // track with menu should be opened
+    const [openIndex, setOpenIndex] = React.useState<number>(-1);
+
+    const handleMenu = (event, index: number) =>  {
+        setAnchorEl(event.currentTarget);
+        setOpenIndex(index); // set current menu index to open
+    };
+    
+    const handleMenuClose = (event) => {
+         setAnchorEl(null);
+};
+
     return (
         <React.Fragment>
             <Toolbar variant="dense" sx={{
@@ -68,15 +88,18 @@ function Header(props: HeaderProps) {
                     divider={<Divider sx={{backgroundColor: 'white', height: 20, alignSelf:'center'}} variant="middle" orientation="vertical" flexItem />}
               spacing={1}
                 >
-     
+                  
                 {sections.map((section, index) => (
-               
-          <Link
+               <span  key={index}>
+            <Link
             color="inherit"
+            component="button"
             noWrap
-            key={index}
+             onMouseEnter={(event) => handleMenu(event, index)}
+            //onMouseLeave={handleMenuClose}
+            //onClick={(event) =>  handleMenu(event, index)}         
             variant="caption"
-            href={section.url}
+            //href={section.url}
                             sx={{
                                 py: 1,
                                 px: 3,
@@ -88,8 +111,26 @@ function Header(props: HeaderProps) {
           >
             {section.title}
                   </Link>
-            
+                        <StyledMenu
+                        
+          // only render currently open menu
+             open={Boolean(anchorEl) && index === openIndex}
+             onClose={handleMenuClose}
+             anchorEl={anchorEl} 
+          {...props}
+         >
+         {section.options.length > 0 ? section.options.map((option, index) => (
+             <MenuItem key={index} onMouseLeave={handleMenuClose } onClick={handleMenuClose} disableRipple>
+                {option}
+                <ArrowForwardIosOutlinedIcon/>
+             </MenuItem>            
+         )) : null}
+         
+         
+        </StyledMenu>
+               </span>         
                 ))}
+           
                 </Stack>
                 
                 <SearchIcon sx={{color: 'white', ml:30,}}/>

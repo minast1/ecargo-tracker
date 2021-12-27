@@ -11,13 +11,14 @@ import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DatePicker from '@mui/lab/DatePicker';
 import { useStore } from '../src/orderStore';
 import  Box  from '@mui/material/Box';
+import { status } from '../src/constants';
 
 
 
 
 
 
-const status = [
+/*const status = [
   { value: 'INFO_RECIEVED', label: 'Info Recieved' },
   { value: 'PENDING', label: 'Pending' },
   { value: 'IN_TRANSIT', label: 'In Transit' },
@@ -27,7 +28,7 @@ const status = [
   { value: 'PICK_UP', label: 'Ready' },
    {value: 'FAIL_ATTEMPT', label: 'Failed Attempt'}
        
-]
+]*/
 export default function EditTracker({order}: {order: Order}) {
       const update = useStore(state => state.updateFeilds);
 
@@ -90,8 +91,9 @@ export default function EditTracker({order}: {order: Order}) {
           
           labelId="demo-simple-select-label"
                   id="demo-simple-select"
-                  onChange={handleStatusChange}
-          value={trackStatus}
+                  onChange={ handleStatusChange}
+          //defaultValue={trackStatus}
+          value={trackStatus as Status}
           label="Status"
               >
                   {

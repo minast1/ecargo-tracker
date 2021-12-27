@@ -13,11 +13,12 @@ generator client {
 
 model Order {
   id        String   @id @default(cuid())
-  email     String   @unique
-  phone     String?  @db.VarChar(50)
+  address   String   @db.VarChar(100)
+  phone     String?  @db.VarChar(70)
+  name      String   @db.VarChar(100)
   awb       String?  @unique
   jrn       String?  @unique
-  status    Status   @default(INFO_RECIEVED)
+  status    Status   @default(PACKAGE_RECIEVED)
   createdAt DateTime @default(now())
 }
 
@@ -28,19 +29,19 @@ model Tracker {
   courier         String   @db.VarChar(255)
   //phone      String   @db.VarChar(255)
   createdAt       DateTime @default(now())
-  status          Status   @default(INFO_RECIEVED)
+  status          Status   @default(PACKAGE_RECIEVED)
   message         String   @default("Tracking Information Recieved Successfully")
 }
 
 enum Status {
-  INFO_RECIEVED
+  PACKAGE_RECIEVED
   PENDING
   IN_TRANSIT
+  ARRIVED_AT_DESTINATION
   DELIVERED
   SHIPPED
   RETURNED
   PICK_UP
-  FAIL_ATTEMPT
 }
 
 model Session {

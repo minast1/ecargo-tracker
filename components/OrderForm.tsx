@@ -16,9 +16,10 @@ import { useStore } from '../src/orderStore';
 
 
 type OFormInput = {
-    email: string
+    name: string
     phone: string
     prefix: string
+    address:string
     track_number: string
     status: Status
 }
@@ -29,11 +30,12 @@ const { control, handleSubmit, reset, setValue, register, formState: { errors } 
 });
     const addItem = useStore(state => state.addItem);
    // const [orderStatus, _setStatus] = React.useState<Status>('INFO_RECIEVED');
-   
+    const defaultValue = "PACKAGE_RECIEVED";
     const onSubmit: SubmitHandler<OFormInput> = (data) => {
-        const {track_number, status, prefix, phone, email } = data;
+        //console.log(data);
+        const {track_number, status, prefix, phone, name,address} = data;
         const awb = prefix.concat("-", track_number) // Join the prefix to the generated number to form the jwb
-        const orderData = { email: email, phone: phone, awb: awb, status: status };
+        const orderData = { name: name, phone: phone, awb: awb, status: status, address:address};
 
         fetch('/api/v2/orders', {
             method: 'POST',
@@ -43,7 +45,7 @@ const { control, handleSubmit, reset, setValue, register, formState: { errors } 
             body: JSON.stringify(orderData)
         }).then(response => response.json()).
             then(data => addItem(data));
-         reset()
+         reset({name: '', address:'', phone: '', prefix:'', track_number: '', status: defaultValue as Status}) 
      }
     const handleTrackinChange = () => {
         const tValue = generateTrackingNumber();
@@ -73,21 +75,21 @@ const { control, handleSubmit, reset, setValue, register, formState: { errors } 
     >
           <div>
               <Controller
-                  name="email"
+                  name="name"
                   control={control}
                   render={({ field: { value } }) =>
               
                       <TextField
                           required
-                          {...register("email")}
-                          error={!!errors.email}
-                          helperText={errors.email?.message}
+                          {...register("name")}
+                          error={!!errors.name}
+                          helperText={errors.name?.message}
                           defaultValue={value}
-                          sx={{width:'48%'}}
+                          sx={{width:'55%'}}
                           id="outlined-required"
                           size="small"
-                          label="Client Email"
-                          placeholder="example@gmail.com"
+                          label="Client Name"
+                          placeholder="John Doe"
                       />
                   }
               />
@@ -110,6 +112,26 @@ const { control, handleSubmit, reset, setValue, register, formState: { errors } 
                       />
                   }
               />
+
+               <Controller
+                  name="address"
+                  control={control}
+                  render={({ field: { value } }) =>
+              
+                      <TextField
+                          required
+                          {...register("address")}
+                          error={!!errors.address}
+                          helperText={errors.address?.message}
+                           sx={{width:'90%'}}
+                            defaultValue={value}
+                          id="outlined-required"
+                          size="small"
+                          placeholder=" xxx example street"
+                          label="Client Address"
+                      />
+                  }
+              />
               <Controller
                   name="prefix"
                   control={control}
@@ -121,7 +143,7 @@ const { control, handleSubmit, reset, setValue, register, formState: { errors } 
                           {...register("prefix")}
                           error={!!errors.prefix}
                            helperText={errors.prefix?.message}
-                           sx={{width:'15%'}}
+                           sx={{width:'18%', ml: '80px'}}
                           id="outlined-required"
                           size="small"
                           label="Awb Prefix"
@@ -147,13 +169,14 @@ const { control, handleSubmit, reset, setValue, register, formState: { errors } 
                                   }}
                                   id="outlined-required"
                                   //defaultValue={'xxxxxxxx'}
-                                  value={value}
+                                  defaultValue={value}
                                   error={!!errors.track_number}
                                   placeholder='Generate code'
                                   helperText={errors.track_number?.message}
                                    sx={{width:'50%'}}
                                   size="small"
                                   label="Tracking Number"
+                                  InputLabelProps={{ shrink: true }}
                               />
                           }
                       />
@@ -162,9 +185,7 @@ const { control, handleSubmit, reset, setValue, register, formState: { errors } 
                       <Controller
                           name="status"
                           control={control}
-                          defaultValue={
-                              'INFO_RECIEVED' as Status
-                          }
+                          defaultValue={defaultValue.trim() as Status} 
                               
                           render={({ field: { onChange, value, onBlur } }) => (
                               <FormControl sx={{ mt: 1, ml: 4 }}>
@@ -173,6 +194,7 @@ const { control, handleSubmit, reset, setValue, register, formState: { errors } 
                                       label="Status"
                                       size="small"
                                       value={value}
+                                     
                                       onChange={onChange}
                                       onBlur={onBlur}
                                   >
@@ -183,7 +205,6 @@ const { control, handleSubmit, reset, setValue, register, formState: { errors } 
                                           )
                                       }
                                   </Select>
-                                  <FormHelperText>With label + helper text</FormHelperText>
                               </FormControl>
                           )}/>
                                  

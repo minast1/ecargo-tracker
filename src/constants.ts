@@ -3,11 +3,12 @@ import * as yup from 'yup';
 
 
 export const sections = [
-  { title: 'Home', url: '/' },
-  { title: 'services & support', url: '/contact-us' },
-  { title: 'about', url: '#' },
-  { title: 'news', url: '#' },
-  { title: 'contact', url: '#' },
+  { title: 'Home', url: '/', options: ['about us','network','fleet','facilities']},
+  { title: 'services & support', url: '#',options: ['shipping services','support','COVID-19 Vaccine Global Distribution'] },
+  { title: 'products', url: '#', options:['emirates pharma','emirates fresh','emirates live','emirates safe'] },
+  { title: 'news', url: '#', options: ['media center'] },
+  { title: 'e-skycargo', url: '#', options:[]},
+  { title: 'contact', url: '#', options:['send message', 'find local office'] },
 
 ];
 
@@ -83,14 +84,14 @@ export async function fetcher<JSON = any> (
   return res.json();
 }*/
 export const status = [
-  { value: 'INFO_RECIEVED', label: 'Info Recieved' },
-  { value: 'PENDING', label: 'Pending' },
+  { value: 'PACKAGE_RECIEVED', label: 'Package Recieved' },
+  { value: 'PENDING', label: 'Pending Shipment' },
   { value: 'IN_TRANSIT', label: 'In Transit' },
   { value: 'DELIVERED', label: 'Delivered' },
   { value: 'RETURNED', label: 'Returned' },
   { value: 'SHIPPED', label: 'Shipped' },
-  { value: 'PICK_UP', label: 'Ready' },
-   {value: 'FAIL_ATTEMPT', label: 'Failed Attempt'}
+  { value: 'PICK_UP', label: 'Ready for Pickup' },
+   {value: 'ARRIVED_AT_DESTINATION', label: 'Arrived at destination'}
        
 ]
 
@@ -142,7 +143,8 @@ export const registerSchema = yup.object({
 })
 
 export const orderSchema = yup.object({
-  email: yup.string().email('You must provide a valid email address').required('Email field is required'),
+  name: yup.string().required('Client name field is required'),
+  address: yup.string().required('Client address field is required'),
   prefix: yup.string().required('This field is required').length(3, 'Prefix length must be 3'),
   track_number: yup.string().required('This field is required'),
 
