@@ -13,8 +13,9 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import StyledMenu from './StyledMenu';
 import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutlined';
-
-
+import  ListItemIcon  from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import MenuList from '@mui/material/MenuList';
 
 
 interface HeaderProps {
@@ -29,7 +30,7 @@ interface HeaderProps {
 function Header(props: HeaderProps) {
     const { sections } = props; 
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-
+    const timerRef = React.useRef(null);
     // track with menu should be opened
     const [openIndex, setOpenIndex] = React.useState<number>(-1);
 
@@ -95,8 +96,8 @@ function Header(props: HeaderProps) {
             color="inherit"
             component="button"
             noWrap
-             onMouseEnter={(event) => handleMenu(event, index)}
-            //onMouseLeave={handleMenuClose}
+            onMouseOver={(event) =>   handleMenu(event, index)}
+             
             //onClick={(event) =>  handleMenu(event, index)}         
             variant="caption"
             //href={section.url}
@@ -112,20 +113,29 @@ function Header(props: HeaderProps) {
             {section.title}
                   </Link>
                         <StyledMenu
-                        
+                        sx={{'&:hover': {cursor:'pointer'}}}
           // only render currently open menu
+                          MenuListProps={{onMouseLeave: handleMenuClose}} 
              open={Boolean(anchorEl) && index === openIndex}
              onClose={handleMenuClose}
              anchorEl={anchorEl} 
           {...props}
-         >
-         {section.options.length > 0 ? section.options.map((option, index) => (
-             <MenuItem key={index} onMouseLeave={handleMenuClose } onClick={handleMenuClose} disableRipple>
-                {option}
-                <ArrowForwardIosOutlinedIcon/>
+        >
+          <MenuList>                     
+         { section.options.map((option, index) => (
+             <MenuItem
+                 key={index}
+                 sx={{ '&:hover': {color:'red'}}}
+                 onClick={handleMenuClose}
+                 disableRipple>
+                 <ListItemText>{option}</ListItemText>
+                 <ListItemIcon>
+                <ArrowForwardIosOutlinedIcon fontSize="small" sx={{ '&:hover': {color:'red'}}}/>
+                 </ListItemIcon>
+              
              </MenuItem>            
-         )) : null}
-         
+         ))}
+         </MenuList>
          
         </StyledMenu>
                </span>         

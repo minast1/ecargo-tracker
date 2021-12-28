@@ -7,7 +7,7 @@ export const sections = [
   { title: 'services & support', url: '#',options: ['shipping services','support','COVID-19 Vaccine Global Distribution'] },
   { title: 'products', url: '#', options:['emirates pharma','emirates fresh','emirates live','emirates safe'] },
   { title: 'news', url: '#', options: ['media center'] },
-  { title: 'e-skycargo', url: '#', options:[]},
+  { title: 'e-skycargo', url: '#', options: ['emirates courier','emirates mail','emirates pets','emirates charter']},
   { title: 'contact', url: '#', options:['send message', 'find local office'] },
 
 ];

@@ -19,34 +19,39 @@ const StyledMenu = styled((props: MenuProps) => (
   />
 ))(({ theme }) => ({
   '& .MuiPaper-root': {
-        borderRadius: 0,
-      borderTop: '3px solid #c62828',
-      //borderColor: 'red',
-    marginTop: theme.spacing(1),
-    minWidth: 160,
+    borderRadius: 0,
+    borderTop: '3px solid #c62828',
+    //borderColor: 'red',
+    //marginTop: theme.spacing(1),
+    minWidth: 130,
     color:
       theme.palette.mode === 'light' ? 'rgb(55, 65, 81)' : theme.palette.grey[300],
     boxShadow:
       'rgb(255, 255, 255) 0px 0px 0px 0px, rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px',
     '& .MuiMenu-list': {
-        padding: '4px 0',
+     // padding: '4px 0',
     },
-        '& .MuiMenuItem-root': {
-            fontSize: 12,
-            fontWeight: 'bold',
-            textTransform:'capitalize',
-            '& .MuiSvgIcon-root': {
-        
+    '& .MuiMenuItem-root': {
+      fontSize: '15px',
+      fontWeight: 'bold',
+      '&:hover': {
+        '& .MuiSvgIcon-root': {
+           color:'red'
+         }
+      },
+      textTransform: 'capitalize',
+      '& .MuiSvgIcon-root': {
         fontSize: 13,
         color: theme.palette.text.secondary,
-                //marginRight: theme.spacing(0),
-          marginLeft: theme.spacing(4)
+        //marginRight: theme.spacing(0),
+        marginLeft: theme.spacing(4)
       },
       '&:active': {
-        backgroundColor: alpha(
+        backgroundColor:'white'
+        /*backgroundColor: alpha(
           theme.palette.primary.main,
           theme.palette.action.selectedOpacity,
-        ),
+        ),*/
       },
     },
   },
